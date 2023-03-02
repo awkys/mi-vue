@@ -7,7 +7,8 @@
  -->
 <template>
   <div id="register">
-    <el-dialog title="注册" width="300px" center :visible.sync="isRegister">
+<!--    注册-->
+    <el-dialog title="sign up" width="300px" center :visible.sync="isRegister">
       <el-form
         :model="RegisterUser"
         :rules="rules"
@@ -16,30 +17,33 @@
         class="demo-ruleForm"
       >
         <el-form-item prop="name">
+<!--          请输入账号-->
           <el-input
             prefix-icon="el-icon-user-solid"
-            placeholder="请输入账号"
+            placeholder="Please input Username"
             v-model="RegisterUser.name"
           ></el-input>
         </el-form-item>
         <el-form-item prop="pass">
+<!--          请输入密码-->
           <el-input
             prefix-icon="el-icon-view"
             type="password"
-            placeholder="请输入密码"
+            placeholder="please enter password"
             v-model="RegisterUser.pass"
           ></el-input>
         </el-form-item>
         <el-form-item prop="confirmPass">
+<!--          请再次输入密码-->
           <el-input
             prefix-icon="el-icon-view"
             type="password"
-            placeholder="请再次输入密码"
+            placeholder="please enter password again"
             v-model="RegisterUser.confirmPass"
           ></el-input>
         </el-form-item>
         <el-form-item>
-          <el-button size="medium" type="primary" @click="Register" style="width:100%;">注册</el-button>
+          <el-button size="medium" type="primary" @click="Register" style="width:100%;">sign up</el-button>
         </el-form-item>
       </el-form>
     </el-dialog>
@@ -53,7 +57,7 @@ export default {
     // 用户名的校验方法
     let validateName = (rule, value, callback) => {
       if (!value) {
-        return callback(new Error("请输入用户名"));
+        return callback(new Error("Please input Username"));
       }
       // 用户名以字母开头,长度在5-16之间,允许字母数字下划线
       const userNameRule = /^[a-zA-Z][a-zA-Z0-9_]{4,15}$/;
@@ -76,13 +80,14 @@ export default {
             return Promise.reject(err);
           });
       } else {
-        return callback(new Error("字母开头,长度5-16之间,允许字母数字下划线"));
+        //字母开头,长度5-16之间,允许字母数字下划线
+        return callback(new Error("Start with a letter, length is between 5-16, alphanumeric underscore is allowed"));
       }
     };
     // 密码的校验方法
     let validatePass = (rule, value, callback) => {
       if (value === "") {
-        return callback(new Error("请输入密码"));
+        return callback(new Error("please enter password"));
       }
       // 密码以字母开头,长度在6-18之间,允许字母数字和下划线
       const passwordRule = /^[a-zA-Z]\w{5,17}$/;
@@ -91,21 +96,22 @@ export default {
         return callback();
       } else {
         return callback(
-          new Error("字母开头,长度6-18之间,允许字母数字和下划线")
+          //  字母开头,长度6-18之间,允许字母数字和下划线
+          new Error("Start with a letter, length between 6-18")
         );
       }
     };
     // 确认密码的校验方法
     let validateConfirmPass = (rule, value, callback) => {
       if (value === "") {
-        return callback(new Error("请输入确认密码"));
+        return callback(new Error("Please enter the confirmation password"));
       }
       // 校验是否以密码一致
       if (this.RegisterUser.pass != "" && value === this.RegisterUser.pass) {
         this.$refs.ruleForm.validateField("checkPass");
         return callback();
       } else {
-        return callback(new Error("两次输入的密码不一致"));
+        return callback(new Error("The two entered passwords do not match"));
       }
     };
     return {

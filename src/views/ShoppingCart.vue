@@ -13,9 +13,10 @@
       <div class="cart-header-content">
         <p>
           <i class="el-icon-shopping-cart-full" style="color:#ff6700; font-weight: 600;"></i>
-          我的购物车
+          my cart
         </p>
-        <span>温馨提示：产品是否购买成功，以最终下单为准哦，请尽快结算</span>
+<!--        温馨提示：产品是否购买成功，以最终下单为准哦，请尽快结算-->
+        <span>Reminder: Whether the product is successfully purchased is subject to the final order, please settle as soon as possible</span>
       </div>
     </div>
     <!-- 购物车头部END -->
@@ -26,14 +27,14 @@
         <!-- 购物车表头 -->
         <li class="header">
           <div class="pro-check">
-            <el-checkbox v-model="isAllCheck">全选</el-checkbox>
+            <el-checkbox v-model="isAllCheck">select all</el-checkbox>
           </div>
           <div class="pro-img"></div>
-          <div class="pro-name">商品名称</div>
-          <div class="pro-price">单价</div>
-          <div class="pro-num">数量</div>
-          <div class="pro-total">小计</div>
-          <div class="pro-action">操作</div>
+<!--          <div class="pro-name">商品名称</div>-->
+          <div class="pro-price">unit price</div>
+          <div class="pro-num">quantity</div>
+          <div class="pro-total">Subtotal</div>
+          <div class="pro-action">operate</div>
         </li>
         <!-- 购物车表头END -->
 
@@ -47,12 +48,12 @@
               <img :src="$target + item.productImg" />
             </router-link>
           </div>
-          <div class="pro-name">
-            <router-link
-              :to="{ path: '/goods/details', query: {productID:item.productID} }"
-            >{{item.productName}}</router-link>
-          </div>
-          <div class="pro-price">{{item.price}}元</div>
+<!--          <div class="pro-name">-->
+<!--            <router-link-->
+<!--              :to="{ path: '/goods/details', query: {productID:item.productID} }"-->
+<!--            >{{item.productName}}</router-link>-->
+<!--          </div>-->
+          <div class="pro-price">${{item.price}}</div>
           <div class="pro-num">
             <el-input-number
               size="small"
@@ -62,16 +63,16 @@
               :max="item.maxNum"
             ></el-input-number>
           </div>
-          <div class="pro-total pro-total-in">{{item.price*item.num}}元</div>
+          <div class="pro-total pro-total-in">${{item.price*item.num}}</div>
           <div class="pro-action">
             <el-popover placement="right">
-              <p>确定删除吗？</p>
+              <p>confirm to delete？</p>
               <div style="text-align: right; margin: 10px 0 0">
                 <el-button
                   type="primary"
                   size="mini"
                   @click="deleteItem($event,item.id,item.productID)"
-                >确定</el-button>
+                >Sure</el-button>
               </div>
               <i class="el-icon-error" slot="reference" style="font-size: 18px;"></i>
             </el-popover>
@@ -84,22 +85,24 @@
       <div class="cart-bar">
         <div class="cart-bar-left">
           <span>
-            <router-link to="/goods">继续购物</router-link>
+            <router-link to="/goods">continue shopping</router-link>
           </span>
           <span class="sep">|</span>
           <span class="cart-total">
-            共
-            <span class="cart-total-num">{{getNum}}</span> 件商品，已选择
-            <span class="cart-total-num">{{getCheckNum}}</span> 件
+            <span class="cart-total-num">{{getNum}}</span> items, selected
+            <span class="cart-total-num">{{getCheckNum}}</span> pieces
           </span>
         </div>
         <div class="cart-bar-right">
           <span>
-            <span class="total-price-title">合计：</span>
-            <span class="total-price">{{getTotalPrice}}元</span>
+            <span class="total-price-title">total：</span>
+            <span class="total-price">${{getTotalPrice}}</span>
           </span>
-          <router-link :to="getCheckNum > 0 ? '/confirmOrder' : ''">
-            <div :class="getCheckNum > 0 ? 'btn-primary' : 'btn-primary-disabled'">去结算</div>
+<!--          <router-link :to="getCheckNum > 0 ? '/confirmOrder' : ''">-->
+<!--            <div :class="getCheckNum > 0 ? 'btn-primary' : 'btn-primary-disabled'">to settle</div>-->
+<!--          </router-link>-->
+          <router-link :to="getCheckNum > 0 ? '/settle' : ''">
+            <div :class="getCheckNum > 0 ? 'btn-primary' : 'btn-primary-disabled'">to settle</div>
           </router-link>
         </div>
       </div>
@@ -110,8 +113,8 @@
     <!-- 购物车为空的时候显示的内容 -->
     <div v-else class="cart-empty">
       <div class="empty">
-        <h2>您的购物车还是空的！</h2>
-        <p>快去购物吧！</p>
+        <h2>your cart is still empty！</h2>
+        <p>go shopping！</p>
       </div>
     </div>
     <!-- 购物车为空的时候显示的内容END -->
@@ -268,6 +271,7 @@ export default {
 .shoppingCart .content ul .pro-check {
   float: left;
   height: 85px;
+  /*width: 110px;*/
   width: 110px;
 }
 .shoppingCart .content ul .pro-check .el-checkbox {
@@ -277,7 +281,7 @@ export default {
 .shoppingCart .content ul .pro-img {
   float: left;
   height: 85px;
-  width: 120px;
+  width: 180px;
 }
 .shoppingCart .content ul .pro-img img {
   height: 80px;
@@ -295,18 +299,21 @@ export default {
 }
 .shoppingCart .content ul .pro-price {
   float: left;
-  width: 140px;
+  /*width: 140px;*/
+  width: 180px;
   padding-right: 18px;
   text-align: center;
 }
 .shoppingCart .content ul .pro-num {
   float: left;
-  width: 150px;
+  /*width: 150px;*/
+  width: 200px;
   text-align: center;
 }
 .shoppingCart .content ul .pro-total {
   float: left;
-  width: 120px;
+  /*width: 120px;*/
+  width: 160px;
   padding-right: 81px;
   text-align: right;
 }
@@ -315,7 +322,8 @@ export default {
 }
 .shoppingCart .content ul .pro-action {
   float: left;
-  width: 80px;
+  /*width: 80px;*/
+  width: 160px;
   text-align: center;
 }
 .shoppingCart .content ul .pro-action i:hover {

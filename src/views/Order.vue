@@ -12,7 +12,7 @@
       <div class="order-header-content">
         <p>
           <i class="el-icon-s-order" style="font-size: 30px;color: #ff6700;"></i>
-          我的订单
+          my order
         </p>
       </div>
     </div>
@@ -24,15 +24,15 @@
         <ul>
           <!-- 我的订单表头 -->
           <li class="order-info">
-            <div class="order-id">订单编号: {{item[0].order_id}}</div>
-            <div class="order-time">订单时间: {{item[0].order_time | dateFormat}}</div>
+            <div class="order-id">order number: {{item[0].order_id}}</div>
+            <div class="order-time">order time: {{item[0].order_time | dateFormat}}</div>
           </li>
           <li class="header">
             <div class="pro-img"></div>
-            <div class="pro-name">商品名称</div>
-            <div class="pro-price">单价</div>
-            <div class="pro-num">数量</div>
-            <div class="pro-total">小计</div>
+<!--            <div class="pro-name">product name</div>-->
+            <div class="pro-price">unit price</div>
+            <div class="pro-num">quantity</div>
+            <div class="pro-total">Subtotal</div>
           </li>
           <!-- 我的订单表头END -->
 
@@ -43,27 +43,26 @@
                 <img :src="$target + product.product_picture" />
               </router-link>
             </div>
-            <div class="pro-name">
-              <router-link
-                :to="{ path: '/goods/details', query: {productID:product.product_id} }"
-              >{{product.product_name}}</router-link>
-            </div>
-            <div class="pro-price">{{product.product_price}}元</div>
+<!--            <div class="pro-name">-->
+<!--              <router-link-->
+<!--                :to="{ path: '/goods/details', query: {productID:product.product_id} }"-->
+<!--              >{{product.product_name}}</router-link>-->
+<!--            </div>-->
+            <div class="pro-price">${{product.product_price}}</div>
             <div class="pro-num">{{product.product_num}}</div>
-            <div class="pro-total pro-total-in">{{product.product_price*product.product_num}}元</div>
+            <div class="pro-total pro-total-in">${{product.product_price*product.product_num}}</div>
           </li>
         </ul>
         <div class="order-bar">
           <div class="order-bar-left">
             <span class="order-total">
-              共
-              <span class="order-total-num">{{total[index].totalNum}}</span> 件商品
+              <span class="order-total-num">{{total[index].totalNum}}</span> items
             </span>
           </div>
           <div class="order-bar-right">
             <span>
-              <span class="total-price-title">合计：</span>
-              <span class="total-price">{{total[index].totalPrice}}元</span>
+              <span class="total-price-title">total：</span>
+              <span class="total-price">${{total[index].totalPrice}}</span>
             </span>
           </div>
           <!-- 订单列表END -->
@@ -76,8 +75,8 @@
     <!-- 订单为空的时候显示的内容 -->
     <div v-else class="order-empty">
       <div class="empty">
-        <h2>您的订单还是空的！</h2>
-        <p>快去购物吧！</p>
+        <h2>your order is still empty！</h2>
+        <p>go shopping！</p>
       </div>
     </div>
     <!-- 订单为空的时候显示的内容END -->

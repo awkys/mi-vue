@@ -9,23 +9,24 @@
   <div id="myList" class="myList">
     <ul>
       <li v-for="item in list" :key="item.product_id">
-        <el-popover placement="top">
-          <p>确定删除吗？</p>
-          <div style="text-align: right; margin: 10px 0 0">
-            <el-button type="primary" size="mini" @click="deleteCollect(item.product_id)">确定</el-button>
-          </div>
-          <i class="el-icon-close delete" slot="reference" v-show="isDelete"></i>
-        </el-popover>
+<!--        <el-popover placement="top">-->
+<!--          <p>确定删除吗？</p>-->
+<!--          <div style="text-align: right; margin: 10px 0 0">-->
+<!--            <el-button type="primary" size="mini" @click="deleteCollect(item.product_id)">确定</el-button>-->
+<!--          </div>-->
+<!--          <i class="el-icon-close delete" slot="reference" v-show="isDelete"></i>-->
+<!--        </el-popover>-->
+<!--        <img :src="$target +item.product_picture" alt />-->
         <router-link :to="{ path: '/goods/details', query: {productID:item.product_id} }">
           <img :src="$target +item.product_picture" alt />
           <h2>{{item.product_name}}</h2>
           <h3>{{item.product_title}}</h3>
           <p>
-            <span>{{item.product_selling_price}}元</span>
+            <span>${{item.product_selling_price}}</span>
             <span
               v-show="item.product_price != item.product_selling_price"
               class="del"
-            >{{item.product_price}}元</span>
+            >${{item.product_price}}</span>
           </p>
         </router-link>
       </li>
@@ -99,10 +100,14 @@ export default {
 .myList ul li {
   z-index: 1;
   float: left;
-  width: 234px;
-  height: 280px;
-  padding: 10px 0;
-  margin: 0 0 14.5px 13.7px;
+  /*width: 234px;*/
+  width: 459px;
+  /*height: 280px;*/
+  height: 600px;
+  /*padding: 100px 0;*/
+  bottom: 100px;
+  /*margin: 0 0 14.5px 13.7px;*/
+  margin: 0 0 14.5px 30px;
   background-color: white;
   -webkit-transition: all 0.2s linear;
   transition: all 0.2s linear;
@@ -116,7 +121,8 @@ export default {
   transform: translate3d(0, -2px, 0);
 }
 .myList ul li img {
-  width: 160px;
+  width: 459px;
+  height: 459px;
   display: block;
   margin: 0 auto;
 }

@@ -13,30 +13,35 @@
         <div class="nav">
           <ul>
             <li v-if="!this.$store.getters.getUser">
-              <el-button type="text" @click="login">登录</el-button>
+<!--              登录-->
+              <el-button type="text" @click="login">Log in</el-button>
               <span class="sep">|</span>
-              <el-button type="text" @click="register = true">注册</el-button>
+<!--              注册-->
+              <el-button type="text" @click="register = true">Sign up</el-button>
             </li>
             <li v-else>
-              欢迎
+              welcome
               <el-popover placement="top" width="180" v-model="visible">
-                <p>确定退出登录吗？</p>
+                <p>Are you sure you want to log out？</p>
                 <div style="text-align: right; margin: 10px 0 0">
-                  <el-button size="mini" type="text" @click="visible = false">取消</el-button>
-                  <el-button type="primary" size="mini" @click="logout">确定</el-button>
+                  <el-button size="mini" type="text" @click="visible = false">Cancel</el-button>
+                  <el-button type="primary" size="mini" @click="logout">Sure</el-button>
                 </div>
                 <el-button type="text" slot="reference">{{this.$store.getters.getUser.userName}}</el-button>
               </el-popover>
             </li>
             <li>
-              <router-link to="/order">我的订单</router-link>
+<!--              我的订单-->
+              <router-link to="/order">My Order</router-link>
             </li>
             <li>
-              <router-link to="/collect">我的收藏</router-link>
+<!--              我的收藏-->
+              <router-link to="/collect">my collection</router-link>
             </li>
             <li :class="getNum > 0 ? 'shopCart-full' : 'shopCart'">
               <router-link to="/shoppingCart">
-                <i class="el-icon-shopping-cart-full"></i> 购物车
+<!--                购物车-->
+                <i class="el-icon-shopping-cart-full"></i> cart
                 <span class="num">({{getNum}})</span>
               </router-link>
             </li>
@@ -54,17 +59,21 @@
           active-text-color="#409eff"
           router
         >
-          <div class="logo">
-            <router-link to="/">
-              <img src="./assets/imgs/logo.png" alt />
-            </router-link>
-          </div>
-          <el-menu-item index="/">首页</el-menu-item>
-          <el-menu-item index="/goods">全部商品</el-menu-item>
-          <el-menu-item index="/about">关于我们</el-menu-item>
+<!--          <div class="logo">-->
+<!--            <router-link to="/">-->
+<!--              <img src="./assets/imgs/logo.png" alt />-->
+<!--            </router-link>-->
+<!--          </div>-->
+<!--          首页-->
+          <el-menu-item index="/">Home</el-menu-item>
+<!--          所有商品-->
+          <el-menu-item index="/goods">All Products</el-menu-item>
+<!--          关于我们-->
+<!--          <el-menu-item index="/about">ABOUT US</el-menu-item>-->
 
           <div class="so">
-            <el-input placeholder="请输入搜索内容" v-model="search">
+<!--       请输入搜索内容     -->
+            <el-input placeholder="Enter search content" v-model="search">
               <el-button slot="append" icon="el-icon-search" @click="searchClick"></el-button>
             </el-input>
           </div>
@@ -88,29 +97,35 @@
       <!-- 底栏容器 -->
       <el-footer>
         <div class="footer">
-          <div class="ng-promise-box">
-            <div class="ng-promise">
-              <p class="text">
-                <a class="icon1" href="javascript:;">7天无理由退换货</a>
-                <a class="icon2" href="javascript:;">满99元全场免邮</a>
-                <a class="icon3" style="margin-right: 0" href="javascript:;">100%品质保证</a>
-              </p>
-            </div>
-          </div>
+<!--          <div class="ng-promise-box">-->
+<!--            <div class="ng-promise">-->
+<!--              <p class="text">-->
+<!--                <a class="icon1" href="javascript:;">7天无理由退换货</a>-->
+<!--                <a class="icon2" href="javascript:;">满99元全场免邮</a>-->
+<!--                <a class="icon3" style="margin-right: 0" href="javascript:;">100%品质保证</a>-->
+<!--              </p>-->
+<!--            </div>-->
+<!--          </div>-->
           <div class="github">
-            <a href="https://github.com/hai-27/vue-store" target="_blank">
-              <div class="github-but"></div>
-            </a>
+            <router-link to="/">
+              <img src="./assets/imgs/logo.png" alt />
+            </router-link>
+<!--            <a href="https://github.com/hai-27/vue-store" target="_blank">-->
+<!--              <div class="github-but"></div>-->
+<!--            </a>-->
           </div>
           <div class="mod_help">
             <p>
-              <router-link to="/">首页</router-link>
+<!--           首页   -->
+              <router-link to="/">home</router-link>
               <span>|</span>
-              <router-link to="/goods">全部商品</router-link>
-              <span>|</span>
-              <router-link to="/about">关于我们</router-link>
+<!--             全部商品 -->
+              <router-link to="/goods">all products</router-link>
+<!--              <span>|</span>-->
+<!--              -->
+<!--              <router-link to="/about">about us</router-link>-->
             </p>
-            <p class="coty">商城版权所有 &copy; 2012-2021</p>
+<!--            <p class="coty">商城版权所有 &copy; 2012-2021</p>-->
           </div>
         </div>
       </el-footer>
@@ -141,18 +156,18 @@ export default {
       // 如果已经登录，设置vuex登录状态
       this.setUser(JSON.parse(localStorage.getItem("user")));
     }
-    window.setTimeout(() => {
-      this.$message({
-        duration: 0,
-        showClose: true,
-        message: `
-        <p>如果觉得这个项目还不错，</p>
-        <p style="padding:10px 0">您可以给项目源代码仓库点Star支持一下，谢谢！</p>
-        <p><a href="https://github.com/hai-27/vue-store" target="_blank">Github传送门</a></p>`,
-        dangerouslyUseHTMLString: true,
-        type: "success"
-      });
-    }, 1000 * 60);
+    // window.setTimeout(() => {
+    //   this.$message({
+    //     duration: 0,
+    //     showClose: true,
+    //     message: `
+    //     <p>如果觉得这个项目还不错，</p>
+    //     <p style="padding:10px 0">您可以给项目源代码仓库点Star支持一下，谢谢！</p>
+    //     <p><a href="https://github.com/hai-27/vue-store" target="_blank">Github传送门</a></p>`,
+    //     dangerouslyUseHTMLString: true,
+    //     type: "success"
+    //   });
+    // }, 1000 * 60);
   },
   computed: {
     ...mapGetters(["getUser", "getNum"])
@@ -197,7 +212,8 @@ export default {
       localStorage.setItem("user", "");
       // 清空vuex登录信息
       this.setUser("");
-      this.notifySucceed("成功退出登录");
+      //成功退出登录
+      this.notifySucceed("Successfully logged out");
     },
     // 接收注册子组件传过来的数据
     isRegister(val) {
@@ -242,11 +258,12 @@ a:hover {
 /* 顶部导航栏CSS */
 .topbar {
   height: 40px;
-  background-color: #3d3d3d;
-  margin-bottom: 20px;
+  background-color: #000000;
+  margin-bottom: 1%;
 }
 .topbar .nav {
-  width: 1225px;
+  /*width: 1225px;*/
+  width: 100%;
   margin: 0 auto;
 }
 .topbar .nav ul {
@@ -320,7 +337,7 @@ a:hover {
   width: 100%;
   text-align: center;
   background: #2f2f2f;
-  padding-bottom: 20px;
+  padding-bottom: 5px;
 }
 .footer .ng-promise-box {
   border-bottom: 1px solid #3d3d3d;

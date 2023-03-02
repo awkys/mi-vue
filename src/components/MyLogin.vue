@@ -7,21 +7,21 @@
  -->
 <template>
   <div id="myLogin">
-    <el-dialog title="登录" width="300px" center :visible.sync="isLogin">
+    <el-dialog title="log in" width="300px" center :visible.sync="isLogin">
       <el-form :model="LoginUser" :rules="rules" status-icon ref="ruleForm" class="demo-ruleForm">
         <el-form-item prop="name">
-          <el-input prefix-icon="el-icon-user-solid" placeholder="请输入账号" v-model="LoginUser.name"></el-input>
+          <el-input prefix-icon="el-icon-user-solid" placeholder="please input username" v-model="LoginUser.name"></el-input>
         </el-form-item>
         <el-form-item prop="pass">
           <el-input
             prefix-icon="el-icon-view"
             type="password"
-            placeholder="请输入密码"
+            placeholder="please enter password"
             v-model="LoginUser.pass"
           ></el-input>
         </el-form-item>
         <el-form-item>
-          <el-button size="medium" type="primary" @click="Login" style="width:100%;">登录</el-button>
+          <el-button size="medium" type="primary" @click="Login" style="width:100%;">log in</el-button>
         </el-form-item>
       </el-form>
     </el-dialog>
@@ -36,7 +36,7 @@ export default {
     // 用户名的校验方法
     let validateName = (rule, value, callback) => {
       if (!value) {
-        return callback(new Error("请输入用户名"));
+        return callback(new Error("please enter user name"));
       }
       // 用户名以字母开头,长度在5-16之间,允许字母数字下划线
       const userNameRule = /^[a-zA-Z][a-zA-Z0-9_]{4,15}$/;
@@ -44,13 +44,14 @@ export default {
         this.$refs.ruleForm.validateField("checkPass");
         return callback();
       } else {
-        return callback(new Error("字母开头,长度5-16之间,允许字母数字下划线"));
+        //字母开头,长度5-16之间,允许字母数字下划线
+        return callback(new Error("Start with a letter, length is between 5-16"));
       }
     };
     // 密码的校验方法
     let validatePass = (rule, value, callback) => {
       if (value === "") {
-        return callback(new Error("请输入密码"));
+        return callback(new Error("please enter password"));
       }
       // 密码以字母开头,长度在6-18之间,允许字母数字和下划线
       const passwordRule = /^[a-zA-Z]\w{5,17}$/;
@@ -59,7 +60,8 @@ export default {
         return callback();
       } else {
         return callback(
-          new Error("字母开头,长度6-18之间,允许字母数字和下划线")
+          //  字母开头,长度6-18之间,允许字母数字和下划线
+          new Error("Start with a letter, length is between 5-16")
         );
       }
     };

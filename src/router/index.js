@@ -68,6 +68,24 @@ const routes = [
     meta: {
       requireAuth: true // 需要验证登录状态
     }
+  },
+  //  结算页面，用户地址信息
+  {
+    path: '/settle',
+    name: 'settle',
+    component: () => import('../views/Settle.vue'),
+    meta: {
+      requireAuth: true // 需要验证登录状态
+    }
+  },
+  //  结算页面，用户支付信息
+  {
+    path: '/pay',
+    name: 'pay',
+    component: () => import('../views/Pay.vue'),
+    meta: {
+      requireAuth: true // 需要验证登录状态
+    }
   }
 ]
 

@@ -12,12 +12,15 @@
 </template>
 <style>
 .error {
-  height: 500px;
-  width: 1225px;
+  /*height: 500px;*/
+  /*width: 1225px;*/
+  height: 100%;
+  width: 100%;
   margin: 0 auto;
 }
 .error .main {
-  margin: 0 362.5px;
+  margin-left: 20%;
+  /*margin: 0 1.5px;*/
   height: 500px;
   background: url(../assets/imgs/error.png) no-repeat;
 }

@@ -8,38 +8,38 @@
 <template>
   <div class="goods" id="goods" name="goods">
     <!-- 面包屑 -->
-    <div class="breadcrumb">
-      <el-breadcrumb separator-class="el-icon-arrow-right">
-        <el-breadcrumb-item to="/">首页</el-breadcrumb-item>
-        <el-breadcrumb-item>全部商品</el-breadcrumb-item>
-        <el-breadcrumb-item v-if="search">搜索</el-breadcrumb-item>
-        <el-breadcrumb-item v-else>分类</el-breadcrumb-item>
-        <el-breadcrumb-item v-if="search">{{search}}</el-breadcrumb-item>
-      </el-breadcrumb>
-    </div>
+<!--    <div class="breadcrumb">-->
+<!--      <el-breadcrumb separator-class="el-icon-arrow-right">-->
+<!--        <el-breadcrumb-item to="/">首页</el-breadcrumb-item>-->
+<!--        <el-breadcrumb-item>全部商品</el-breadcrumb-item>-->
+<!--        <el-breadcrumb-item v-if="search">搜索</el-breadcrumb-item>-->
+<!--        <el-breadcrumb-item v-else>分类</el-breadcrumb-item>-->
+<!--        <el-breadcrumb-item v-if="search">{{search}}</el-breadcrumb-item>-->
+<!--      </el-breadcrumb>-->
+<!--    </div>-->
     <!-- 面包屑END -->
 
     <!-- 分类标签 -->
-    <div class="nav">
-      <div class="product-nav">
-        <div class="title">分类</div>
-        <el-tabs v-model="activeName" type="card">
-          <el-tab-pane
-            v-for="item in categoryList"
-            :key="item.category_id"
-            :label="item.category_name"
-            :name="''+item.category_id"
-          />
-        </el-tabs>
-      </div>
-    </div>
+<!--    <div class="nav">-->
+<!--      <div class="product-nav">-->
+<!--        <div class="title">分类</div>-->
+<!--        <el-tabs v-model="activeName" type="card">-->
+<!--          <el-tab-pane-->
+<!--            v-for="item in categoryList"-->
+<!--            :key="item.category_id"-->
+<!--            :label="item.category_name"-->
+<!--            :name="''+item.category_id"-->
+<!--          />-->
+<!--        </el-tabs>-->
+<!--      </div>-->
+<!--    </div>-->
     <!-- 分类标签END -->
 
     <!-- 主要内容区 -->
-    <div class="main">
+    <div class="main-box">
       <div class="list">
         <MyList :list="product" v-if="product.length>0"></MyList>
-        <div v-else class="none-product">抱歉没有找到相关的商品，请看看其他的商品</div>
+<!--        <div v-else class="none-product">抱歉没有找到相关的商品，请看看其他的商品</div>-->
       </div>
       <!-- 分页 -->
       <div class="pagination">

@@ -8,31 +8,31 @@
 <template>
   <div id="details">
     <!-- 头部 -->
-    <div class="page-header">
-      <div class="title">
-        <p>{{productDetails.product_name}}</p>
-        <div class="list">
-          <ul>
-            <li>
-              <router-link to>概述</router-link>
-            </li>
-            <li>
-              <router-link to>参数</router-link>
-            </li>
-            <li>
-              <router-link to>用户评价</router-link>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
+<!--    <div class="page-header">-->
+<!--      <div class="title">-->
+<!--        <p>{{productDetails.product_name}}</p>-->
+<!--        <div class="list">-->
+<!--          <ul>-->
+<!--            <li>-->
+<!--              <router-link to>概述</router-link>-->
+<!--            </li>-->
+<!--            <li>-->
+<!--              <router-link to>参数</router-link>-->
+<!--            </li>-->
+<!--            <li>-->
+<!--              <router-link to>用户评价</router-link>-->
+<!--            </li>-->
+<!--          </ul>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
     <!-- 头部END -->
 
     <!-- 主要内容 -->
     <div class="main">
       <!-- 左侧商品轮播图 -->
       <div class="block">
-        <el-carousel height="560px" v-if="productPicture.length>1">
+        <el-carousel height="560px"  v-if="productPicture.length>1">
           <el-carousel-item v-for="item in productPicture" :key="item.id">
             <img style="height:560px;" :src="$target + item.product_picture" :alt="item.intro" />
           </el-carousel-item>
@@ -49,52 +49,59 @@
 
       <!-- 右侧内容区 -->
       <div class="content">
-        <h1 class="name">{{productDetails.product_name}}</h1>
-        <p class="intro">{{productDetails.product_intro}}</p>
-        <p class="store">小米自营</p>
-        <div class="price">
-          <span>{{productDetails.product_selling_price}}元</span>
-          <span
-            v-show="productDetails.product_price != productDetails.product_selling_price"
-            class="del"
-          >{{productDetails.product_price}}元</span>
-        </div>
+<!--        <h1 class="name">{{productDetails.product_name}}</h1>-->
+<!--        <p class="intro">{{productDetails.product_intro}}</p>-->
+<!--        <p class="store">小米自营</p>-->
+<!--        <div class="price">-->
+<!--          <span>${{productDetails.product_selling_price}}</span>-->
+<!--          <span-->
+<!--            v-show="productDetails.product_price != productDetails.product_selling_price"-->
+<!--            class="del"-->
+<!--          >${{productDetails.product_price}}</span>-->
+<!--        </div>-->
         <div class="pro-list">
-          <span class="pro-name">{{productDetails.product_name}}</span>
+          <h1 class="pro-name">{{productDetails.product_name}}</h1>
           <span class="pro-price">
-            <span>{{productDetails.product_selling_price}}元</span>
+<!--            <span>{{productDetails.product_selling_price}}$</span>-->
             <span
               v-show="productDetails.product_price != productDetails.product_selling_price"
               class="pro-del"
-            >{{productDetails.product_price}}元</span>
+            >${{productDetails.product_price}}</span>
           </span>
-          <p class="price-sum">总计 : {{productDetails.product_selling_price}}元</p>
+          <p class="price-sum">total : ${{productDetails.product_selling_price}}</p>
         </div>
         <!-- 内容区底部按钮 -->
         <div class="button">
-          <el-button class="shop-cart" :disabled="dis" @click="addShoppingCart">加入购物车</el-button>
-          <el-button class="like" @click="addCollect">喜欢</el-button>
+<!--          加入购物车-->
+          <el-button class="shop-cart" :disabled="dis" @click="addShoppingCart">add cart</el-button>
+<!--          喜欢-->
+          <el-button class="like" @click="addCollect">like</el-button>
         </div>
         <!-- 内容区底部按钮END -->
         <div class="pro-policy">
           <ul>
             <li>
-              <i class="el-icon-circle-check"></i> 小米自营
+              <i class="el-icon-circle-check"></i> Self-operated
             </li>
             <li>
-              <i class="el-icon-circle-check"></i> 小米发货
+              <i class="el-icon-circle-check"></i> Fast delivery
             </li>
             <li>
-              <i class="el-icon-circle-check"></i> 7天无理由退货
+              <i class="el-icon-circle-check"></i> high quality
             </li>
             <li>
-              <i class="el-icon-circle-check"></i> 7天价格保护
+              <i class="el-icon-circle-check"></i> price protection
             </li>
           </ul>
         </div>
-      </div>
+        <br>
+        <div class="tableTitle"></div>
+        <div class="intro" v-html="productDetails.product_intro"></div>
+<!--        <h3 class="intro">{{productDetails.product_intro}}</h3>-->
+           </div>
       <!-- 右侧内容区END -->
     </div>
+
     <!-- 主要内容END -->
   </div>
 </template>
@@ -257,9 +264,11 @@ export default {
 
 /* 主要内容CSS */
 #details .main {
-  width: 1225px;
-  height: 560px;
-  padding-top: 30px;
+  /*width: 1225px;*/
+  /*height: 560px;*/
+  /*padding-top: 30px;*/
+  padding-top: 2%;
+  padding-left: 8%;
   margin: 0 auto;
 }
 #details .main .block {
@@ -272,7 +281,8 @@ export default {
 }
 #details .main .content {
   float: left;
-  margin-left: 25px;
+  /*margin-left: 25px;*/
+  margin-left: 5%;
   width: 640px;
 }
 #details .main .content .name {
@@ -304,13 +314,15 @@ export default {
   text-decoration: line-through;
 }
 #details .main .content .pro-list {
-  background: #f9f9fa;
-  padding: 30px 60px;
-  margin: 50px 0 50px;
+  /*background: #f9f9fa;*/
+  /*padding: 30px 60px;*/
+  padding: 5% 10%;
+  /*margin: 50px 0 50px;*/
 }
 #details .main .content .pro-list span {
   line-height: 30px;
-  color: #616161;
+  /*color: #616161;*/
+  color: #000000;
 }
 #details .main .content .pro-list .pro-price {
   float: right;
@@ -320,7 +332,8 @@ export default {
   text-decoration: line-through;
 }
 #details .main .content .pro-list .price-sum {
-  color: #ff6700;
+  /*color: #ff6700;*/
+  color: #000000;
   font-size: 24px;
   padding-top: 20px;
 }
@@ -338,20 +351,38 @@ export default {
 }
 #details .main .content .button .shop-cart {
   width: 340px;
-  background-color: #ff6700;
+  /*background-color: #ff6700;*/
+  background-color: #90EE90;
 }
 #details .main .content .button .shop-cart:hover {
-  background-color: #f25807;
+  /*background-color: #f25807;*/
+  background-color: #800000;
 }
 
 #details .main .content .button .like {
   width: 260px;
   margin-left: 40px;
-  background-color: #b0b0b0;
+  /*background-color: #b0b0b0;*/
+  background-color: 	#A52A2A;
 }
 #details .main .content .button .like:hover {
-  background-color: #757575;
+  /*background-color: #757575;*/
+  background-color: #800000;
 }
+
+#details .main .content .tableTitle {
+  position: relative;
+  margin-top: 4%;
+  margin-bottom: 3%;
+  /*margin: 0 auto;*/
+  /*width: 600px;*/
+  height: 2px;
+  background-color: #d4d4d4;
+  /*text-align: center;*/
+  /*font-size: 16px;*/
+  color: rgba(101, 101, 101, 1);
+}
+
 #details .main .content .pro-policy li {
   float: left;
   margin-right: 20px;

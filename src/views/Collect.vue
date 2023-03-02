@@ -11,7 +11,7 @@
     <div class="collect-header">
       <div class="collect-title">
         <i class="el-icon-collection-tag" style="color: #ff6700;"></i>
-        我的收藏
+        my collection
       </div>
     </div>
     <div class="content">
